@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>romanToInt</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * @param {string} s
+             * @return {number}
+             */
+            var romanToInt = function (s) {
+                let latin = 0;
+                for (let i = 0; i < s.length; i++) {
+                    switch (s[i]) {
+                        case 'I':
+                            if (s[i + 1] === 'V') {
+                                latin += 4;
+                                break;
+                            }
+                            if (s[i + 1] === 'X') {
+                                latin += 9;
+                                break;
+                            }
+                            latin += 1;
+                            break;
+                        case 'V':
+                            if (s[i - 1] === 'I') {
+                                continue;
+                                break;
+                            }
+                            latin += 5;
+                            break;
+                        case 'X':
+                            if (s[i + 1] === 'L') {
+                                latin += 40;
+                                break;
+                            }
+                            if (s[i + 1] === 'C') {
+                                latin += 90;
+                                break;
+                            }
+                            if (s[i - 1] === 'I') {
+                                continue;
+                                break;
+                            }
+                            latin += 10;
+                            break;
+                        case 'L':
+                            if (s[i - 1] === 'X') {
+                                continue;
+                                break;
+                            }
+                            latin += 50;
+                            break;
+                        case 'C':
+                            if (s[i + 1] === 'D') {
+                                latin += 400;
+                                break;
+                            }
+                            if (s[i + 1] === 'M') {
+                                latin += 900;
+                                break;
+                            }
+                            if (s[i - 1] === 'X') {
+                                continue;
+                                break;
+                            }
+                            latin += 100;
+                            break;
+                        case 'D':
+                            if (s[i - 1] === 'C') {
+                                continue;
+                                break;
+                            }
+                            latin += 500;
+                            break;
+                        case 'M':
+                            if (s[i - 1] === 'C') {
+                                continue;
+                                break;
+                            }
+                            latin += 1000;
+                            break;
+                    }
+                }
+                return latin;
+            };
+            console.log(romanToInt('III'));
+            console.log(romanToInt('IV'));
+            console.log(romanToInt('IX'));
+            console.log(romanToInt('LVIII'));
+            console.log(romanToInt('MCMXCIV'));            
+        </script>
+    </body>
+</html>

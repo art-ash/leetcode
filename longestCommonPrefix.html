@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>longestCommonPrefix</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {string[]} strs
+        * @return {string}
+        */
+        var longestCommonPrefix = function(strs) {
+            if (strs.length === 1) {
+                return strs[0];
+            }
+            const sortByLength = (a,b) => a.length - b.length;
+            strs.sort(sortByLength);
+            const firstStr = strs[0];
+            const prefixArr = [];
+
+            for(let i = 1; i < strs.length; i++){
+                let result = '';
+                for(let j = 0; j < firstStr.length; j++){
+                    if(firstStr[j] === strs[i][j]) {
+                        result += firstStr[j];
+                    } else {
+                        break;
+                    }
+                }
+                prefixArr.push(result)
+            }
+            prefixArr.sort(sortByLength);
+            return prefixArr[0];
+        };
+        console.log(longestCommonPrefix(["flower","flow","flight"]))
+        console.log(longestCommonPrefix(["room","roommate","rooms", "roomdoor"]))
+        console.log(longestCommonPrefix(["dog","racecar","car"]))
+        console.log(longestCommonPrefix(["accreditation","accumulator","accordion", "accompaning"]))
+        console.log(longestCommonPrefix([""]))
+        console.log(longestCommonPrefix(["a"]))
+        console.log(longestCommonPrefix(["cir","car"]))
+    </script>
+</body>
+</html>
